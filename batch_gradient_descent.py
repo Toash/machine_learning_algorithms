@@ -20,7 +20,7 @@ def loss_function(m, b, points):
 
 # batch gradient descent
 # uses the whole dataset to compute the m
-def gradient_descent(m_now, b_now, points, lr):
+def batch_gradient_descent(m_now, b_now, points, lr):
     m_gradient = 0
     b_gradient = 0
 
@@ -41,15 +41,16 @@ def gradient_descent(m_now, b_now, points, lr):
 # m and b and be anything
 m = 0
 b = 0
-lr = 0.01
+lr = 0.001
 epochs = 1000
 
 for i in range(epochs):
-    m, b = gradient_descent(m, b, data, lr)
+    m, b = batch_gradient_descent(m, b, data, lr)
     print(f"epoch {i}: \t m: {m} \t b: {b}")
 
 
 plt.scatter(data.YearsExperience, data.Salary, color="black")
 # plots the line from regression
 plt.plot(list(range(1, 11)), [m * x + b for x in range(1, 11)], color="red")
+plt.title(f"Batch Gradient Descent {epochs} Epochs, {lr} Learning Rate")
 plt.show()
